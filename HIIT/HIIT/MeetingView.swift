@@ -4,6 +4,10 @@
 //
 //  Created by Paul Kang on 2/18/25.
 //
+/// Create a timer that switches betwen run and walk automatically that is set up by the user.
+/// Main screen: text box, timer, start button, stop button, reset button, and set timer button
+/// Set timer screen: current interval texts, add interval button
+/// Add interval screen: set time, set text
 
 import SwiftUI
 import Combine
@@ -39,6 +43,10 @@ class StopwatchViewModel: ObservableObject {
         elapsedTime = 0
     }
     
+    func setInterval() {
+        // Move to SetIntervalView menu
+    }
+    
     func formattedTime() -> String {
         let minutes = Int(elapsedTime) / 60
         let seconds = Int(elapsedTime) % 60
@@ -52,6 +60,8 @@ struct MeetingView: View {
     
     var body: some View {
         VStack(spacing: 20) {
+            // TODO add custom wording from intervals here, may need to add color customization as well to make more obvious
+            Text("Testing custom wording").font(.system(size: 32, weight: .bold)).multilineTextAlignment(.center)
             Text(viewModel.formattedTime())
                 .font(.system(size: 48, weight: .bold, design: .monospaced))
                 .padding()
@@ -71,6 +81,15 @@ struct MeetingView: View {
                     viewModel.reset()
                 }
                 .buttonStyle(.bordered)
+            }
+            
+            NavigationView {
+                VStack() {
+                    NavigationLink(destination: SetIntervalView()) {
+                        Text("Set Intervals")
+                    }
+                    .buttonStyle(.bordered)
+                }
             }
         }
         .padding()
