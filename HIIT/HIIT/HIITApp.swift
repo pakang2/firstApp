@@ -11,7 +11,7 @@ import SwiftUI
 struct HIITApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MeetingView()
         }
     }
 }
